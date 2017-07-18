@@ -1,16 +1,19 @@
 #include <stdio.h>
 
-void main()
+int hammingDistance(int x, int y)
 {
-	int a = 1;
-	int b = 4;
-	int c = a ^ b;
-	int d = 1;
+	int c = x ^ y;
 	int cnt = 0;
 	while (c)
 	{
-		cnt += c & d;
+		cnt += c & 1;
 		c = c >> 1;
 	};
+	return cnt;
+}
+
+void main()
+{
+	int cnt = hammingDistance(1, 4);
 	printf("%d", cnt);
 }
