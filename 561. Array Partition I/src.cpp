@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
+
 using namespace std;
 
 void exchange(int &a, int &b)
