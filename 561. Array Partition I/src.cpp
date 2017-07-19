@@ -61,6 +61,46 @@ void quick_sort(vector<int> &num, int left, int right)
 	return;
 }
 
+void merge_array(vector<int> &num, int left, int mid, int right, vector<int> &tmp)
+{
+	int p1 = left;
+	int p2 = mid + 1;
+	int k = 0;
+	while (p1 <= mid && p2 <= right)
+	{
+		if (num[p1] <= num[p2])
+			tmp[k++] = num[p1++];
+		else
+			tmp[k++] = num[p2++];
+	}
+
+	while (p1 <= mid)
+		tmp[k++] = num[p1++];
+	while (p2 <= right)
+		tmp[k++] = num[p2++];
+
+	for (int i = 0; i < k; i++)
+		num[left + i] = tmp[i];
+}
+
+void merge_sort(vector<int> &num, int left, int right, vector<int> &tmp)
+{
+	//int n = num.size();
+	if (left < right)
+	{
+		//切分
+		int mid = (left + right) / 2;
+		//左边归并排序
+		merge_sort(num, left, mid, tmp);
+		//右边归并排序
+		merge_sort(num, mid + 1, right, tmp);
+		//merge
+		merge_array(num, left, mid, right, tmp);
+	}
+	return;
+}
+
+
 void main()
 {
 	//int n[] = {1, 3, 2, 4};
@@ -73,8 +113,12 @@ void main()
 	//bubble_sort(num);
 
 	//快速排序
-	quick_sort(num, 0, num_size - 1);
+	//quick_sort(num, 0, num_size - 1);
 
+	//归并排序
+	vector<int> tmp(num_size);
+	merge_sort(num, 0, num_size - 1, tmp);
+	
 	int res=0;
 	for (int i = 0; i < num.size(); i=i+1)
 	{
