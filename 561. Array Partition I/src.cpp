@@ -116,6 +116,8 @@ void main()
 	//quick_sort(num, 0, num_size - 1);
 
 	//归并排序
+	//这里的tmp用于归并排序过程中的统一临时存储
+	//也可以在merge_array()内部，每次临时new一个临时数组作为存储，优点是比较清晰，缺点是多次递归时执行多次new的过程比较耗费时间
 	vector<int> tmp(num_size);
 	merge_sort(num, 0, num_size - 1, tmp);
 	
