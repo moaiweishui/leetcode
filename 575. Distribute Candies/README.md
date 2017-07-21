@@ -1,0 +1,2 @@
+- distributeCandies():比较慢，过不了时间约束
+- distributeCandies2()：比上面快
