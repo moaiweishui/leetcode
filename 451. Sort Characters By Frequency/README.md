@@ -1,0 +1,2 @@
+- Solution类内的cmp函数必须定义成static函数，编译不会报错
+- 若定义成普通成员函数，则使用&Solution::cmp或者cmp在sort函数中进行调用，均报错
