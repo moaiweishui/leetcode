@@ -1,2 +1,2 @@
 - solution 1: 时间复杂度较高，每次循环体中，都会涉及到一次set的插入与查找
-- solution 2: 一开始对vector执行一次sort操作，后面是O(logn)
+- solution 2: 一开始对vector执行一次sort操作（O(nlogn)），后面是O(n)
