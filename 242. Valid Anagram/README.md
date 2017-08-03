@@ -1,2 +1,2 @@
 - Solution 1: 将string赋值给multiset，判断multiset是否相同
-- Solution 2: 直接利用string的排序和比较，速度快
+- Solution 2: 直接利用string的排序和比较，速度稍快，其实也没比1快多少，还是不够用
