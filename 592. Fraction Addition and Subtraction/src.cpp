@@ -92,6 +92,7 @@ public:
 	    }
         
         int product = 1;
+        
 	    for (int i = 0; i < len; i++)
 		    product *= low[i];
         
