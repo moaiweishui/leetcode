@@ -1,1 +1,3 @@
-- Solution 1: 时间复杂度太高，Time Limit Exceeded
+- Solution 1: 用组合的方式进行穷举，时间复杂度太高，Time Limit Exceeded
+- Solution 2: 先排序，然后降维到twoSum，在twoSum中，利用左右两个游标求组合（因为先行保证有序，故游标移动规律简单且步数很少）
+    - 优化方向：在降维前，把数组任意四个数之和的上下限与target进行比较，可以完成提前的剪枝。
