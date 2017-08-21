@@ -34,6 +34,7 @@ public:
             }
             size--;
         }
+        
         return p;
     }
 };
