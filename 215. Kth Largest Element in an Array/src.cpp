@@ -6,3 +6,5 @@ public:
         return nums[nums.size() - k];
     }
 };
+
+/************* Solution 2 ***************/
