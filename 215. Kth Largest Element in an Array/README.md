@@ -1,2 +1,3 @@
 - Solution 1: 直接用快排对整个数组进行排序，nlogn，61%
+- Solution 2: 用priority_queue，57%
 - 考虑只需要求第K个值，是否可以提前剪枝作为优化方法
