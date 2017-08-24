@@ -120,3 +120,36 @@ public:
         return res;
     }
 };
+
+/****************** Solution 4 *******************/
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int len = height.size();
+        
+        if(len == 0 || len == 1 || len ==2)
+            return 0;
+        
+        stack<int> st;
+        int p = 0;
+
+        int res = 0;
+
+        for (int i = 0; i < len; i++)
+        {
+            while (!st.empty() && (height[i] > height[st.top()]))
+            {
+                int temp = st.top();
+                st.pop();
+                if (st.empty())
+                    break;
+                int distance = i - st.top() - 1;
+                int h = min(height[i], height[st.top()]) - height[temp];
+                res += distance * h;
+            }
+            st.push(i);
+        }
+        
+        return res;
+    }
+};
