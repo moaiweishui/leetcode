@@ -80,3 +80,43 @@ public:
         return res;
     }
 };
+
+/****************** Solution 3 *******************/
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int len = height.size();
+        
+        if(len == 0 || len == 1 || len ==2)
+            return 0;
+        
+        vector<int> left_maxh(len, 0);
+        vector<int> right_maxh(len, 0);
+        
+        int left_h = height[0];
+        left_maxh[0] = left_h;
+        
+        for(int i = 1; i < len; i++)
+        {
+            if(height[i] > left_h)
+                left_h = height[i];
+            left_maxh[i] = left_h;
+        }
+        
+        int right_h = height[len - 1];
+        right_maxh[len - 1] = right_h;
+        
+        for(int i = len - 2; i >= 0; i--)
+        {
+            if (height[i] > right_h)
+                right_h = height[i];
+            right_maxh[i] = right_h;
+        }
+        
+        int res = 0;
+        for (int i = 0; i < len; i++)
+            res += min(left_maxh[i], right_maxh[i]) - height[i];
+        
+        return res;
+    }
+};
