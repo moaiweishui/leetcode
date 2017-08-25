@@ -163,11 +163,8 @@ public:
         
         if(len == 0 || len == 1 || len ==2)
             return 0;
-        
-        //int max = 0;
-        int max_index = 0;
-        
-        vector<int> left_h(len, 0);
+
+        int max_index = 0;       
         int left_max = height[0];
         
         vector<int> sum(len, 0);
@@ -179,7 +176,6 @@ public:
                 left_max = height[i];
                 max_index = i;
             }
-            left_h[i] = left_max;
             if(i == 0)
                 sum[i] = 0;
             else
