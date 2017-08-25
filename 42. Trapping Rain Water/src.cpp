@@ -153,3 +153,50 @@ public:
         return res;
     }
 };
+
+
+/****************** Solution 5 *******************/
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int len = height.size();
+        
+        if(len == 0 || len == 1 || len ==2)
+            return 0;
+        
+        //int max = 0;
+        int max_index = 0;
+        
+        vector<int> left_h(len, 0);
+        int left_max = height[0];
+        
+        vector<int> sum(len, 0);
+        
+        for(int i = 0; i < len; i++)
+        {           
+            if(height[i] > left_max)
+            {
+                left_max = height[i];
+                max_index = i;
+            }
+            left_h[i] = left_max;
+            if(i == 0)
+                sum[i] = 0;
+            else
+                sum[i] = sum[i - 1] + left_max - height[i];
+        }
+        
+        int res = sum[max_index];
+        
+        int right_max = height[len - 1];
+        
+        for(int i = len - 1; i > max_index; i--)
+        {
+            if (height[i] > right_max)
+                right_max = height[i];
+            res += right_max - height[i];
+        }
+        
+        return res;
+    }
+};
