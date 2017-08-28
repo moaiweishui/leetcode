@@ -45,3 +45,35 @@ public:
         
     }
 };
+
+/********************* Solution 2 **********************/
+int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<pair<int, int>> v;
+        pair<int, int> temp;
+
+        for (int i = 0; i < strs.size(); i++)
+        {
+            temp = make_pair(0, 0);
+            for (int j = 0; j < strs[i].length(); j++)
+            {
+                if (strs[i][j] == '0')
+                    temp.first++;
+                else
+                    temp.second++;
+            }
+            v.push_back(temp);
+        }
+        
+        vector<int> rowv(n + 1, 0);
+        vector<vector<int>> mem(m + 1, rowv);
+        
+        for(int i = 0; i < strs.size(); i++)
+        {
+            for(int j = m; j >= v[i].first; j--)
+                for(int k = n; k >= v[i].second; k--)
+                {
+                    mem[j][k] = max(mem[j][k], 1 + mem[j - v[i].first][k - v[i].second]);
+                }
+        }
+        return mem[m][n];
+    }
