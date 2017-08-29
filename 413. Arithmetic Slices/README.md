@@ -1,2 +1,4 @@
 - Solution 1: 暴力穷举
   - 8%
+- Solution 2: 递归
+  - 13%
