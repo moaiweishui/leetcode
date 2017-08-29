@@ -45,3 +45,28 @@ public:
 
 
 /********************** Solution 2 **********************/
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        if(m == 1 || n == 1)
+            return 1;
+        
+        vector<int> rowv(n, 0);
+        vector<vector<int>> mem;
+        for(int i = 0; i < m; i++)
+            mem.push_back(rowv);
+        
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(i == 0 || j == 0)
+                    mem[i][j] = 1;
+                else
+                    mem[i][j] = mem[i - 1][j] + mem[i][j - 1];
+            }
+        }
+        
+        return mem[m - 1][n - 1];
+    }
+};
