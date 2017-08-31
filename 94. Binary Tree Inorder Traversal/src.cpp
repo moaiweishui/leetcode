@@ -7,6 +7,8 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+/*********************** Solution 1 ***********************/
 class Solution {
 public:
     void inOrder(TreeNode* node, vector<int>& nums)
@@ -23,5 +25,36 @@ public:
         vector<int> nums;
         inOrder(root, nums);
         return nums;
+    }
+};
+
+/*********************** Solution 2 ***********************/
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> nodev;
+        if(root == NULL)
+            return nodev;
+        
+        stack<TreeNode*> st;
+        
+        TreeNode* p = root;
+        
+        while(!st.empty() || p )
+        {
+            while(p)
+            {
+                st.push(p);
+                p = p->left;
+            }
+            p = st.top();
+            st.pop();
+            nodev.push_back(p->val);
+            p = p->right;            
+        }
+        
+        
+        
+        return nodev;
     }
 };
