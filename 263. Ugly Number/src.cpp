@@ -4,11 +4,6 @@ public:
         if(num <= 0)
             return false;
         
-        vector<int> candidate;
-        candidate.push_back(2);
-        candidate.push_back(3);
-        candidate.push_back(5);
-        
         while(num > 1)
         {
             bool flag = false;
