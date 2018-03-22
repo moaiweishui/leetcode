@@ -22,3 +22,22 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
+        TreeNode p = root;
+        while (p != null || !st.empty()){
+            if(p != null){
+                st.push(p);
+                p = p.left;
+            }else{
+                p = st.pop();
+                res.add(p.val);
+                p = p.right;
+            }
+        }
+        return res;
+    }
+}
