@@ -32,3 +32,19 @@ class Solution {
         return true;
     }
 }
+
+class Solution {
+    public static boolean isValidNode(TreeNode node, long min, long max){
+        if(node == null) return true;
+        if(node.val <= min || node.val >= max) return false;
+        return isValidNode(node.left, min, node.val) & isValidNode(node.right, node.val, max);
+    }
+    
+    public boolean isValidBST(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+
+        return isValidNode(root.left, Long.MIN_VALUE, root.val) & isValidNode(root.right, root.val, Long.MAX_VALUE);
+    }
+}
