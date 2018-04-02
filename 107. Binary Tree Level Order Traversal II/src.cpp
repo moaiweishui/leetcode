@@ -9,57 +9,25 @@
  */
 class Solution {
 public:
-    struct TreeNodeWithLevel{
-	    TreeNode* node;
-	    int level;
-	    TreeNodeWithLevel(TreeNode* node) :node(node), level(NULL){}
-    };
-    
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
         vector<vector<int>> res;
-        if(!root)
-            return res;
+        if(root == NULL) return res;
         
-        TreeNodeWithLevel* n0 = new TreeNodeWithLevel(root);
-	    n0->level = 1;
-
-	    queue<TreeNodeWithLevel*> q;
-
-	    q.push(n0);
-        
-        int last_level = 1;
-	    vector<int> tmp;
-        
-        while (!q.empty())
-	    {
-		    if (q.front()->level == last_level)
-		    {
-			    tmp.push_back(q.front()->node->val);
-		    }
-		    else
-		    {
-			    res.push_back(tmp);
-			    tmp.clear();
-			    tmp.push_back(q.front()->node->val);
-			    last_level = q.front()->level;
-		    }
-
-		    if (q.front()->node->left)
-		    {
-			    TreeNodeWithLevel* tmp = new TreeNodeWithLevel(q.front()->node->left);
-			    tmp->level = q.front()->level + 1;
-			    q.push(tmp);
-		    }
-		    if (q.front()->node->right)
-		    {
-			    TreeNodeWithLevel* tmp = new TreeNodeWithLevel(q.front()->node->right);
-			    tmp->level = q.front()->level + 1;
-			    q.push(tmp);
-		    }
-		    q.pop();
-	    }
-	    res.push_back(tmp);
-        reverse(res.begin(), res.end());
+        vector<TreeNode*> vec;
+        vec.push_back(root);
+        int curr = 0;
+        int end;
+        while(curr < vec.size()){
+            end = vec.size();
+            vector<int> temp_vec;
+            while(curr < end){
+                temp_vec.push_back(vec[curr]->val);
+                if(vec[curr]->left != NULL) vec.push_back(vec[curr]->left);
+                if(vec[curr]->right != NULL) vec.push_back(vec[curr]->right);
+                curr++;
+            }
+            res.insert(res.begin(), temp_vec);
+        }
         return res;
     }
 };
