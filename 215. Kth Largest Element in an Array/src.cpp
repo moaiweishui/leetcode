@@ -79,3 +79,49 @@ public:
         return nums[index];
     }
 };
+
+/************* Solution 5 ***************/
+class Solution {
+public:
+    void swap(vector<int>& nums, int index1, int index2){
+    int temp = nums[index1];
+    nums[index1] = nums[index2];
+    nums[index2] = temp;
+}
+
+void adjust_heap(vector<int>& nums, int parent, int end){
+    int temp = nums[parent];
+    for (int i = 2 * parent + 1; i <= end; i = i * 2 + 1){
+        if (i + 1 <= end && nums[i] < nums[i + 1]){
+            i++;
+        }
+        if (nums[i] > temp){
+            nums[parent] = nums[i];
+            parent = i;
+        }
+        else{
+            break;
+        }
+    }
+    nums[parent] = temp;
+}
+    
+    int findKthLargest(vector<int>& nums, int k) {
+        //构建k次最大堆
+    int len = nums.size();
+    int start = len / 2 - 1;
+
+    for (int i = start; i >= 0; i--){
+        adjust_heap(nums, i, len - 1);
+    }
+    if (k == 1) return nums[0];
+    int cnt = 1;
+    for (int i = len - 1; i > 0; i--){
+        swap(nums, 0, i);
+        adjust_heap(nums, 0, i - 1);
+        cnt++;
+        if (cnt == k) return nums[0];
+    }
+    return nums[0];
+    }
+};
