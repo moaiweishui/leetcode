@@ -8,47 +8,34 @@
  * }
  */
 class Solution {
-    class TreeNodeWithLevel{
-    int level;
-    TreeNode node;
-    TreeNodeWithLevel(int x, TreeNode n){
-        level = x;
-        node = n;
-    }
-}
-    
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
-        if(root == null) return res;
-        
-        Queue<TreeNodeWithLevel> q = new LinkedList<>();
-        TreeNodeWithLevel node = new TreeNodeWithLevel(0, root);
-        q.offer(node);
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+    if (root == NULL) return res;
 
-        List<Integer> temp = new ArrayList<>();
-        res.add(temp);
+    vector<TreeNode*> nodev;
+    nodev.push_back(root);
+    int curr = 0;
+    int next_level_start = 1;
 
-        while(!q.isEmpty()){
-            node = q.poll();
-
-            if(node.level == res.size()){
-                temp = new ArrayList<>();
-                res.add(temp);
+    while (curr < nodev.size()){
+        vector<int> tempv;
+        next_level_start = nodev.size();
+        while (curr < next_level_start){
+            if (res.size() % 2 == 0){
+                tempv.push_back(nodev[curr]->val);
             }
-            if(node.level % 2 == 0){
-                res.get(node.level).add(node.node.val);
-            }else{
-                res.get(node.level).add(0, node.node.val);
+            else{
+                tempv.insert(tempv.begin(), nodev[curr]->val);
             }
-
-            if(node.node.left != null){
-                q.offer(new TreeNodeWithLevel(node.level + 1, node.node.left));
-            }
-            if(node.node.right != null){
-                q.offer(new TreeNodeWithLevel(node.level + 1, node.node.right));
-            }
+            if (nodev[curr]->left != NULL) nodev.push_back(nodev[curr]->left);
+            if (nodev[curr]->right != NULL) nodev.push_back(nodev[curr]->right);
+            curr++;
         }
-
-        return res;
+        res.push_back(tempv);
     }
-}
+
+
+    return res;
+    }
+};
